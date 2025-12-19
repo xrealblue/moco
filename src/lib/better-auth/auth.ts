@@ -1,12 +1,13 @@
 import { connectToDatabase } from "@/db/mongoose";
 import { betterAuth } from "better-auth";
+import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { nextCookies } from "better-auth/next-js";
 
 let authInstance: ReturnType<typeof betterAuth> | null = null;
 // prevents multiple connections
 
 export const getAuth = async () => {
-    if (!authInstance) {
+    if (authInstance) {
         return authInstance;
     }
 
@@ -19,7 +20,7 @@ export const getAuth = async () => {
     }
 
     authInstance = betterAuth({
-        database: db,
+        database: mongodbAdapter(db as any),
 
         secret: process.env.BETTER_AUTH_SECRET,
 
