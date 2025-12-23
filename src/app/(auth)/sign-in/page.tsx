@@ -1,115 +1,76 @@
 'use client'
 
-import FooterLink from "@/components/form/FooterLink";
-import InputField from "@/components/form/InputField";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { signInWithEmail } from "@/lib/actions/auth.actions";
-import { Button } from "@/components/ui/button";
+import InputField from "@/components/form/InputField"
+import { signInWithEmail } from "@/lib/actions/auth.actions"
+import { useRouter } from "next/router"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
-type SignInFormData = {
-  email: string;
-  password: string;
-};
+type SignINFormData = {
+  email: string
+  password: string
+}
 
 const SignInPage = () => {
-  const router = useRouter()
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<SignInFormData>({
+  const router = useRouter();
+  const { register, handleSubmit, formState: {
+    errors, isSubmitting,
+  } } = useForm<SignINFormData>({
     defaultValues: {
       email: '',
       password: '',
     },
-    mode: 'onBlur'
-  });
+    mode: 'onBlur',
+  })
 
-  const onSubmit = async (data: SignInFormData) => {
+
+  const onSubmit = async (data: SignINFormData) => {
     try {
       const result = await signInWithEmail(data);
       if (result.success) {
-        toast.success('Signed in! Redirecting...');
-        setTimeout(() => router.push('/'), 800);
-        return;
+        toast.success('signed in! Redirecting...')
+        setTimeout(() => {
+          router.push('/')
+        }, 800)
       }
-      toast.error(result.message || 'Sign in failed. Please try again.');
-    } catch (error) {
-      console.error(error);
-      toast.error('Sign in failed. Please try again.', {
-        description: error instanceof Error ? error.message : 'Failed to sign in.',
-      });
+      toast.error(result.message || 'Sign in Failed. Please Try Again.!')
+
+    } catch (e) {
+      console.log(e)
+      toast.error('Sign In Failed. please try again.', {
+        description: e instanceof Error ? e.message : 'Failed to sign in.',
+      })
     }
-  };
+  }
 
-  /*const onSubmit = async (data: SignUpFormData) => {
-      try {
-        const result = await signUpWithEmail(data);
-
-        if (result.success) {
-          toast.success('Account created! Redirecting...');
-          // Give the user a short moment to see the toast before redirecting
-          setTimeout(() => router.push('/'), 800);
-          return;
-        }
-
-        // If the server returned a failure, show the message if available
-        toast.error(result.message || 'Sign up failed. Please try again.');
-      } catch (error) {
-        console.error('Error submitting form:', error);
-        const msg = error instanceof Error ? error.message : 'Failed to create an account.';
-        toast.error('Sign up failed. Please try again.');
-        console.error(msg);
-      }
-    };
-    */
 
   return (
     <>
-      <h1 className="form-title">Welcome Back!</h1>
-      
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <InputField
-          name="email"
-          label="Email"
-          placeholder="youremail@whatever.com"
-          register={register}
-          error={errors.email}
-          validation={{
-            required: "Email is required",
-            pattern: {
-              value: /^\S+@\S+$/i,
-              message: "Invalid email address"
-            }
-          }}
-        />
+      <div className="">
+        <div className="">
+          <div className="text-white text-2xl font-bold">Welcome Back!</div>
 
-        <InputField
-          name="password"
-          label="Password"
-          placeholder="Enter your password"
-          type="password"
-          register={register}
-          error={errors.password}
-          validation={{
-            required: "Password is required"
-          }}
-        />
+          <form onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
+            <InputField
+              name="email"
+              label="Email"
+              placeholder="Enter your email"
+              register={register}
+              errors={errors.email}
+              validation={{
+                required: "Email is required.",
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: "Invalid email address"
+                }
+              }}
+            />
 
-        <Button
-          type="submit"
-          className="yellow-btn w-full mt-5"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Signing in..." : "Sign In"}
-        </Button>
-
-        <FooterLink
-          text="Don't have an account?"
-          linkText="Sign Up"
-          href="/sign-up"
-        />
-      </form>
+          </form>
+        </div>
+      </div>
     </>
-  );
-};
-
-export default SignInPage;
+  )
+}
