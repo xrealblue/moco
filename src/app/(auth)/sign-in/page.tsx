@@ -1,6 +1,8 @@
 'use client'
 
+import FooterLink from "@/components/form/FooterLink"
 import InputField from "@/components/form/InputField"
+import { Button } from "@/components/ui/button"
 import { signInWithEmail } from "@/lib/actions/auth.actions"
 import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
@@ -68,9 +70,36 @@ const SignInPage = () => {
               }}
             />
 
+            <InputField
+              name="password"
+              label="Password"
+              placeholder="Enter your password"
+              register={register}
+              errors={errors.password}
+              validation={{
+                required: "Password is required.",
+              }}
+            />
+
+
+            <Button
+              type="submit"
+              className="w-full mt-5"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Signing In...' : 'Sign In'}
+            </Button>
+
+            <FooterLink
+              text="Don't have an account? Sign Up"
+              linkText="Sign Up"
+              href='/sign-upf'
+            />
           </form>
         </div>
       </div>
     </>
   )
 }
+
+export default SignInPage
