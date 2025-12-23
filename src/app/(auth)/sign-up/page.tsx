@@ -1,5 +1,6 @@
 import FooterLink from "@/components/form/FooterLink";
 import InputField from "@/components/form/InputField";
+import SelectField from "@/components/form/SelectField";
 import { Button } from "@/components/ui/button";
 import { signUpWithEmail } from "@/lib/actions/auth.actions";
 import { useRouter } from "next/navigation";
@@ -18,7 +19,7 @@ type ISignUpFormData = {
 
 const SignUpPage = () => {
     const router = useRouter();
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ISignUpFormData>({
+    const { register, handleSubmit, control,formState: { errors, isSubmitting } } = useForm<ISignUpFormData>({
         defaultValues: {
             email: '',
             password: '',
