@@ -1,3 +1,5 @@
+'use client'
+
 import { CountrySelectField } from "@/components/form/CountrySelectField";
 import FooterLink from "@/components/form/FooterLink";
 import InputField from "@/components/form/InputField";
@@ -144,3 +146,5 @@ const SignUpPage = () => {
         </>
     )
 }
+
+export default SignUpPage;
