@@ -63,7 +63,7 @@ export default function SearchCommand({ renderAs = 'button', label = 'Add stock'
           >
             <Search color="white"
             style={{
-              width: 'clamp(1rem, 1.5vw, 200rem)',
+              width: 'clamp(2.15rem, 2vw, 200rem)',
             }}
             className="aspect-square"
             />
