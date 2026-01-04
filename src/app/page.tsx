@@ -4,9 +4,14 @@ import { HEATMAP_WIDGET_CONFIG, MARKET_DATA_WIDGET_CONFIG, MARKET_OVERVIEW_WIDGE
 
 const Home = () => {
   return (
-    <div className="flex bg-black min-h-screen home-wrapper">
-      <section className = "grid w-full gap-8 home-section">
-        <div className=" md:col-span-1 xl:col-span-1">
+    <div className="flex super flex-col w-full bg-black min-h-screen"
+    style={{
+      padding: "clamp(1rem, 1.5vw, 200rem)",
+      gap: "clamp(1rem, 5vw, 200rem)"
+    }}
+    >
+      <section className = "flex md:flex-row flex-col w-full gap-8 home-section">
+        <div className="w-full">
           <TradingViewWidget 
             title = "Market Overview"
             scriptUrl="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"
@@ -15,7 +20,7 @@ const Home = () => {
             height={600}
           />  
         </div>
-        <div className=" md:col-span-1 xl:col-span-2">          
+        <div className="w-full">          
           <TradingViewWidget 
             title = "Stock Heatmap"
             scriptUrl="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js"
@@ -25,8 +30,8 @@ const Home = () => {
           </div>
       </section>
 
-      <section className = "grid w-full gap-8 home-section">
-        <div className="h-full md:col-span-1 xl:col-span-1">
+      <section className = "flex md:flex-row flex-col  w-full gap-8 home-section">
+        <div className="w-full">
           <TradingViewWidget 
             scriptUrl="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js"
             config={TOP_STORIES_WIDGET_CONFIG}
@@ -34,7 +39,7 @@ const Home = () => {
             height={600}
           />  
         </div>
-        <div className="h-full md:col-span-1 xl:col-span-2">          
+        <div className="w-full">          
           <TradingViewWidget 
             scriptUrl="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js"
             config={MARKET_DATA_WIDGET_CONFIG}

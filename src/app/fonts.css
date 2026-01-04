@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playwrite+CZ:wght@100..400&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+
+@font-face {
+    font-family: 'NeueHaasUnica-Bold';
+    src: url('/fonts/NeueHaasUnica-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "InputMono-Medium";
+    src: url("/fonts/InputMono-Medium.ttf") format("truetype");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OffBit-101Bold";
+    src: url("/fonts/OffBit-101Bold.ttf") format("truetype");
+    font-style: normal;
+}
+@font-face {
+  font-family: "AndersonGrotesk-Bold";
+  src: url("/fonts/AndersonGrotesk-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "AvoidanceGenevra-Bold";
+  src: url("/fonts/AvoidanceGenevra-Bold.ttf") format("truetype");
+}
+
+
+.off{
+    font-family: "OffBit-101Bold", sans-serif;
+}
+.and {
+  font-family: "AvoidanceGenevra-Bold", sans-serif;
+}
+.play {
+  font-family: "Playwrite CZ", cursive;
+  font-style: normal;
+}
+.super{
+  font-family: "AndersonGrotesk-Bold", sans-serif;
+}
+.mono {
+    font-family: "InputMono-Medium", sans-serif;
+}
+
+.inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.robo {
+  font-family: "Roboto Mono", monospace;
+}
+
+.ant {
+  font-family: "Anton", sans-serif;
+  font-style: normal;
+}
+
+
+
+.medium-font {
+    font-family: 'NeueHaasUnica-Bold', sans-serif;
+}
