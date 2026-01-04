@@ -60,7 +60,7 @@ const SignInPage = () => {
               label="Email"
               placeholder="Enter your email"
               register={register}
-              errors={errors.email}
+              error={errors.email}
               validation={{
                 required: "Email is required.",
                 pattern: {
@@ -75,7 +75,7 @@ const SignInPage = () => {
               label="Password"
               placeholder="Enter your password"
               register={register}
-              errors={errors.password}
+              error={errors.password}
               validation={{
                 required: "Password is required.",
               }}
