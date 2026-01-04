@@ -59,7 +59,7 @@ export default function SearchCommand({ renderAs = 'button', label = 'Add stock'
       {renderAs === 'text' ? (
           <button 
             onClick={() => setOpen(true)} 
-            className="search-text inline-flex items-center gap-2 p-2 cursor-pointer rounded-md transition-colors"
+            className="search-text inline-flex items-center gap-2 p-2 cursor-pointer rounded-md transition-colors hover:bg-gray-800"
           >
             <Search color="white"
             style={{
@@ -73,21 +73,26 @@ export default function SearchCommand({ renderAs = 'button', label = 'Add stock'
             {label}
           </Button>
       )}
-      <CommandDialog open={open} onOpenChange={setOpen} className="search-dialog">
-        <div className="search-field">
-          <CommandInput value={searchTerm} onValueChange={setSearchTerm} placeholder="Search stocks..." className="search-input" />
-          {loading && <Loader2 className="search-loader" />}
+      <CommandDialog open={open} onOpenChange={setOpen} className=" bg-black ">
+        <div className=" bg-black">
+          <CommandInput 
+            value={searchTerm} 
+            onValueChange={setSearchTerm} 
+            placeholder="Search stocks..." 
+            className="search-input bg-black text-white placeholder:text-white/50 " 
+          />
+          {loading && <Loader2 className="search-loader animate-spin text-white absolute right-4 top-4 h-5 w-5" />}
         </div>
-        <CommandList className="search-list">
+        <CommandList className="search-list bg-black max-h-[400px] overflow-y-auto">
           {loading ? (
-              <CommandEmpty className="search-list-empty">Loading stocks...</CommandEmpty>
+              <CommandEmpty className="search-list-empty text-white/50 py-6 text-center">Loading stocks...</CommandEmpty>
           ) : displayStocks?.length === 0 ? (
-              <div className="search-list-indicator">
+              <div className="search-list-indicator text-white/50 py-6 text-center">
                 {isSearchMode ? 'No results found' : 'No stocks available'}
               </div>
             ) : (
-            <ul>
-              <div className="search-count">
+            <ul className="py-2">
+              <div className="search-count px-4 py-2 text-xs font-medium text-white/50 uppercase tracking-wider">
                 {isSearchMode ? 'Search results' : 'Popular stocks'}
                 {` `}({displayStocks?.length || 0})
               </div>
@@ -96,15 +101,15 @@ export default function SearchCommand({ renderAs = 'button', label = 'Add stock'
                     <Link
                         href={`/stocks/${stock.symbol}`}
                         onClick={handleSelectStock}
-                        className="search-item-link"
+                        className="search-item-link flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors "
                     >
-                      <TrendingUp className="h-4 w-4 text-gray-500" />
-                      <div  className="flex-1">
-                        <div className="search-item-name">
+                      <TrendingUp className="h-5 w-5 text-white shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <div className="search-item-name text-white font-medium truncate">
                           {stock.name}
                         </div>
-                        <div className="text-sm text-gray-500">
-                          {stock.symbol} | {stock.exchange } | {stock.type}
+                        <div className="text-sm text-white/50 truncate mt-0.5">
+                          {stock.symbol} | {stock.exchange} | {stock.type}
                         </div>
                       </div>
                     </Link>
