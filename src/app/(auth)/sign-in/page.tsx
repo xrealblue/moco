@@ -4,7 +4,7 @@ import FooterLink from "@/components/form/FooterLink"
 import InputField from "@/components/form/InputField"
 import { Button } from "@/components/ui/button"
 import { signInWithEmail } from "@/lib/actions/auth.actions"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
