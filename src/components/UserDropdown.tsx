@@ -33,7 +33,7 @@ const UserDropdown = ({ user, initialStocks }: { user: User, initialStocks: Stoc
         <Button className="flex border-black ring-black focus:ring-0  cursor-pointer items-center gap-3 text-white bg-black">
 
           <Avatar className="w-8 h-8">
-            <AvatarImage src="avatar.png" />
+            <AvatarImage src="/avatar.png" />
             <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
               {user.name.charAt(0)}
             </AvatarFallback>
@@ -52,7 +52,7 @@ const UserDropdown = ({ user, initialStocks }: { user: User, initialStocks: Stoc
         <DropdownMenuLabel>
           <div className="flex  relative items-center gap-3 py-2">
             <Avatar className="w-10 h-10">
-              <AvatarImage src="avatar.png" />
+              <AvatarImage src="/avatar.png" />
               <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
                 {user.name.charAt(0)}
               </AvatarFallback>
