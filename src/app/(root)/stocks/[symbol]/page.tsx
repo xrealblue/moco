@@ -96,21 +96,10 @@ export default async function StockDetails({ params }: StockDetailsPageProps) {
             </div>
 
             {/* Company Profile */}
-            <div className="bg-black border border-white/10 rounded-lg overflow-hidden hover:border-white/20 transition-colors">
-              <div className="px-4 py-3 border-b border-white/10">
-                <h2 className="text-sm font-semibold uppercase tracking-wider">
-                  Company Profile
-                </h2>
-              </div>
-              <TradingViewWidget
-                scriptUrl={`${scriptUrl}company-profile.js`}
-                config={COMPANY_PROFILE_WIDGET_CONFIG(symbol)}
-                height={440}
-              />
-            </div>
+         
 
             {/* Company Financials */}
-            <div className="bg-black border border-white/10 rounded-lg overflow-hidden hover:border-white/20 transition-colors">
+            <div className="bg-black border border-white/10 rounded-lg overflow-auto h-fit hover:border-white/20 transition-colors">
               <div className="px-4 py-3 border-b border-white/10">
                 <h2 className="text-sm font-semibold uppercase tracking-wider">
                   Financials
