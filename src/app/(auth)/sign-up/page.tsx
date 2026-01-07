@@ -40,7 +40,7 @@ const SignUpPage = () => {
 
             if (result.success) {
                 toast.success('Account created! Redirecting...');
-                setTimeout(() => router.push('/'), 800);
+                setTimeout(() => router.push('/'), 1500);
                 return;
             }
 
@@ -136,7 +136,7 @@ const SignUpPage = () => {
                         />
 
                         <Button type="submit" className="yellow-btn w-full mt-5" disabled={isSubmitting}>
-                            {isSubmitting ? "Creating account" : "Welcome to FinSight!"}
+                            {isSubmitting ? "Creating account" : "Welcome to moco!"}
                         </Button>
 
                         <FooterLink text="Already have an account?" linkText="Sign In" href="/sign-in" />

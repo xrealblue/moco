@@ -2,8 +2,9 @@ import React from 'react'
 import SearchCommand from './SearchCommand'
 import { searchStocks } from '@/lib/actions/finnhub.actions';
 import Link from 'next/link';
+import UserDropdown from './UserDropdown';
 
-const Header = async () => {
+const Header = async ({ user }: { user: User }) => {
 
     const initialStocks = await searchStocks();
     return (
@@ -12,12 +13,15 @@ const Header = async () => {
             <Link className=" text-3xl md:text-5xl leading-none and text-white" href="/">
                 moco
             </Link>
-
+<div className="flex gap-2">
             <div className="">
-                <SearchCommand 
-                renderAs="text"
+                <SearchCommand
+                    renderAs="text"
                     label="Search"
                     initialStocks={initialStocks} />
+            </div>
+
+            <UserDropdown user = {user} initialStocks={initialStocks}/>
             </div>
         </div>
     )

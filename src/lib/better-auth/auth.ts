@@ -12,7 +12,6 @@ export const getAuth = async () => {
     }
 
     const mongoose = await connectToDatabase();
-
     const db = mongoose.connection.db;
 
     if (!db) {
@@ -25,7 +24,10 @@ export const getAuth = async () => {
         secret: process.env.BETTER_AUTH_SECRET,
 
         baseURL: process.env.BETTER_AUTH_URL,
-
+        cookies: {
+            secure: false,     
+            sameSite: "lax",
+        },
         emailAndPassword: {
             enabled: true,
             disableSignUp: false,

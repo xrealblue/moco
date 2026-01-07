@@ -3,7 +3,7 @@
 import FooterLink from "@/components/form/FooterLink"
 import InputField from "@/components/form/InputField"
 import { Button } from "@/components/ui/button"
-import { signInWithEmail } from "@/lib/actions/auth.actions"
+import { authClient } from "@/lib/better-auth/client"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -28,20 +28,23 @@ const SignInPage = () => {
 
   const onSubmit = async (data: SignINFormData) => {
     try {
-      const result = await signInWithEmail(data);
-      if (result.success) {
-        toast.success('signed in! Redirecting...')
-        setTimeout(() => {
-          router.push('/')
-        }, 800)
-      }
-      toast.error(result.message || 'Sign in Failed. Please Try Again.!')
-
+      await authClient.signIn.email({
+        email: data.email,
+        password: data.password,
+        fetchOptions: {
+            onSuccess: () => {
+                toast.success('signed in! Redirecting...')
+                router.push('/')
+                router.refresh() // Ensure server components re-fetch session
+            },
+            onError: (ctx) => {
+                toast.error(ctx.error.message || 'Sign in Failed. Please Try Again.!')
+            }
+        }
+      });
     } catch (e) {
       console.log(e)
-      toast.error('Sign In Failed. please try again.', {
-        description: e instanceof Error ? e.message : 'Failed to sign in.',
-      })
+      toast.error('Sign In Failed. please try again.')
     }
   }
 
@@ -93,7 +96,7 @@ const SignInPage = () => {
             <FooterLink
               text="Don't have an account? Sign Up"
               linkText="Sign Up"
-              href='/sign-upf'
+              href='/sign-up'
             />
           </form>
         </div>
