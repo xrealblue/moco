@@ -1,3 +1,4 @@
+
 import nodemailer from 'nodemailer';
 import { WELCOME_EMAIL_TEMPLATE, NEWS_SUMMARY_EMAIL_TEMPLATE } from './templates';
 

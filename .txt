@@ -1,5 +1,10 @@
-0.1 Build done 05-01-2006 
+0.1 Build done 05-01-2026 
  - Reamaining 
    - auto_mail nodemailer
+   - inngest mail api setup
+   - email_ai generate system
+
+0.2 Build done 08-01-2026 
+ - Reamaining 
    - inngest mail api setup
    - email_ai generate system
