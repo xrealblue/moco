@@ -5,7 +5,6 @@ import {
   CANDLE_CHART_WIDGET_CONFIG,
   BASELINE_WIDGET_CONFIG,
   TECHNICAL_ANALYSIS_WIDGET_CONFIG,
-  COMPANY_PROFILE_WIDGET_CONFIG,
   COMPANY_FINANCIALS_WIDGET_CONFIG,
 } from "@/lib/constants";
 
@@ -16,7 +15,7 @@ export default async function StockDetails({ params }: StockDetailsPageProps) {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header Section */}
-      <div className="border-b border-white/10 bg-black sticky top-0 z-10 backdrop-blur-sm bg-black/80">
+      <div className="border-b border-white/10 bg-black sticky top-0 z-10 backdrop-blur-sm">
         <div className="max-w-[1800px] mx-auto px-4 md:px-6 lg:px-8 py-4">
           <div className="flex bg-whi items-center justify-between">
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
