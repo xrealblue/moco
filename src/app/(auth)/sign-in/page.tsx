@@ -2,9 +2,11 @@
 
 import FooterLink from "@/components/form/FooterLink"
 import InputField from "@/components/form/InputField"
+import OTPVerification from "@/components/OTPVerification"
 import { Button } from "@/components/ui/button"
-import { authClient } from "@/lib/better-auth/client"
+import { signInWithEmail } from "@/lib/actions/auth.actions"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
@@ -15,6 +17,9 @@ type SignINFormData = {
 
 const SignInPage = () => {
   const router = useRouter();
+  const [step, setStep] = useState<'form' | 'otp'>('form');
+  const [credentials, setCredentials] = useState<SignINFormData | null>(null);
+
   const { register, handleSubmit, formState: {
     errors, isSubmitting,
   } } = useForm<SignINFormData>({
@@ -25,29 +30,44 @@ const SignInPage = () => {
     mode: 'onBlur',
   })
 
-
   const onSubmit = async (data: SignINFormData) => {
     try {
-      await authClient.signIn.email({
-        email: data.email,
-        password: data.password,
-        fetchOptions: {
-            onSuccess: () => {
-                toast.success('signed in! Redirecting...')
-                router.push('/')
-                router.refresh() // Ensure server components re-fetch session
-            },
-            onError: (ctx) => {
-                toast.error(ctx.error.message || 'Sign in Failed. Please Try Again.!')
-            }
-        }
-      });
+      const result = await signInWithEmail(data);
+
+      if (result.success && result.requiresOTP) {
+        setCredentials(data);
+        setStep('otp');
+        toast.success('Verification code sent to your email!');
+        return;
+      }
+
+      if (result.success) {
+        toast.success('Signed in! Redirecting...')
+        router.push('/')
+        router.refresh()
+        return;
+      }
+
+      toast.error(result.message || 'Sign in failed. Please try again.');
     } catch (e) {
       console.log(e)
       toast.error('Sign In Failed. please try again.')
     }
   }
 
+  // Show OTP verification step
+  if (step === 'otp' && credentials) {
+    return (
+      <div className="">
+        <OTPVerification
+          email={credentials.email}
+          password={credentials.password}
+          type="signin"
+          onBack={() => setStep('form')}
+        />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -83,7 +103,6 @@ const SignInPage = () => {
                 required: "Password is required.",
               }}
             />
-
 
             <Button
               type="submit"
