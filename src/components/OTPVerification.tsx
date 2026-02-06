@@ -154,52 +154,67 @@ export default function OTPVerification({
     }
 
     return (
-        <div className="w-full max-w-md mx-auto space-y-6">
-            <div className="text-center space-y-2">
-                <h2 className="text-white text-2xl font-bold">Verify Your Email</h2>
-                <p className="text-gray-400 text-sm">
-                    We've sent a 6-digit code to
-                    <br />
-                    <span className="font-medium text-white">{email}</span>
-                </p>
+        <div className="w-full max-w-sm mx-auto space-y-8 animate-in fade-in zoom-in duration-500">
+            <div className="text-center space-y-3">
+                <h2 className="text-white text-3xl font-bold tracking-tight">Verify Email</h2>
+                <div className="text-gray-400 text-sm">
+                    Enter the code sent to
+                    <div className="font-medium text-white mt-1">{email}</div>
+                </div>
             </div>
 
             {/* OTP Input */}
-            <div className="flex justify-center gap-2">
-                {otp.map((digit, index) => (
-                    <input
-                        key={index}
-                        ref={el => { inputRefs.current[index] = el }}
-                        type="text"
-                        inputMode="numeric"
-                        maxLength={6}
-                        value={digit}
-                        onChange={e => handleChange(index, e.target.value)}
-                        onKeyDown={e => handleKeyDown(index, e)}
-                        onPaste={handlePaste}
-                        className="w-12 h-14 text-center text-2xl font-bold bg-transparent border-2 border-gray-600 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/20 outline-none transition-all text-white"
-                        disabled={loading}
-                    />
-                ))}
+            <div>
+                <div className="flex justify-center gap-2 sm:gap-3">
+                    {otp.map((digit, index) => (
+                        <input
+                            key={index}
+                            ref={el => { inputRefs.current[index] = el }}
+                            type="text"
+                            inputMode="numeric"
+                            maxLength={6}
+                            value={digit}
+                            onChange={e => handleChange(index, e.target.value)}
+                            onKeyDown={e => handleKeyDown(index, e)}
+                            onPaste={handlePaste}
+                            className={`
+                                w-10 h-12 sm:w-12 sm:h-14 
+                                text-center text-xl sm:text-2xl font-semibold 
+                                bg-zinc-900 border border-zinc-700 rounded-md 
+                                focus:border-white focus:ring-1 focus:ring-white 
+                                outline-none transition-all duration-200 
+                                text-white placeholder-zinc-600
+                                hover:border-zinc-500
+                                ${loading ? 'opacity-50 cursor-not-allowed' : ''}
+                            `}
+                            disabled={loading}
+                        />
+                    ))}
+                </div>
+                <div className="h-4"></div> {/* Spacer */}
             </div>
 
-            {/* Verify Button */}
-            <Button
-                onClick={handleVerify}
-                disabled={loading || otp.join('').length !== 6}
-                className="yellow-btn w-full"
-            >
-                {loading ? 'Verifying...' : 'Verify Code'}
-            </Button>
+            <div className="space-y-4">
+                {/* Verify Button */}
+                <Button
+                    onClick={handleVerify}
+                    disabled={loading || otp.join('').length !== 6}
+                    className="w-full h-12 bg-white text-black hover:bg-zinc-200 font-semibold rounded-md transition-colors text-base"
+                >
+                    {loading ? (
+                        <span className="flex items-center gap-2">
+                            <span className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                            Verifying...
+                        </span>
+                    ) : 'Verify Code'}
+                </Button>
 
-            {/* Resend Code */}
-            <div className="text-center">
-                <p className="text-sm text-gray-400">
-                    Didn't receive the code?{' '}
+                {/* Resend Code */}
+                <div className="text-center">
                     <button
                         onClick={handleResend}
                         disabled={resendLoading || resendCooldown > 0}
-                        className="text-yellow-500 font-medium hover:text-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        className="text-sm text-zinc-500 hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-zinc-500"
                     >
                         {resendCooldown > 0
                             ? `Resend in ${resendCooldown}s`
@@ -207,16 +222,17 @@ export default function OTPVerification({
                                 ? 'Sending...'
                                 : 'Resend Code'}
                     </button>
-                </p>
+                </div>
             </div>
 
             {/* Back Button */}
             {onBack && (
                 <button
                     onClick={onBack}
-                    className="w-full py-2 text-gray-400 hover:text-white font-medium transition-colors"
+                    className="w-full text-zinc-500 hover:text-white text-sm transition-colors flex items-center justify-center gap-2 group"
                 >
-                    ← Back to {type === 'signup' ? 'Sign Up' : 'Sign In'}
+                    <span className="group-hover:-translate-x-1 transition-transform">←</span>
+                    Back to {type === 'signup' ? 'Sign Up' : 'Sign In'}
                 </button>
             )}
         </div>
