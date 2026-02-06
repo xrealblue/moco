@@ -19,7 +19,7 @@ export const sendOTPEmail = async ({
             : 'Login Verification Code - MOCO';
 
         const { data, error } = await resend.emails.send({
-            from: 'MOCO <noreply@realblue.lol>',
+            from: '"Blue" <noreply@realblue.lol>'
             to: email,
             subject,
             html: `

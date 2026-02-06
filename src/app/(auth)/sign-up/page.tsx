@@ -8,7 +8,7 @@ import OTPVerification from "@/components/OTPVerification";
 import { Button } from "@/components/ui/button";
 import { signUpWithEmail } from "@/lib/actions/auth.actions";
 import { INVESTMENT_GOALS, PREFERRED_INDUSTRIES, RISK_TOLERANCE_OPTIONS } from "@/lib/constants";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -78,6 +78,7 @@ const SignUpPage = () => {
                         riskTolerance: formData.riskTolerance,
                         preferredIndustry: formData.preferredIndustry,
                     }}
+                    password={formData.password}
                     onBack={() => setStep('form')}
                 />
             </div>

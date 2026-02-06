@@ -72,7 +72,8 @@ export const verifySignUpOTP = async (
         investmentGoals: string;
         riskTolerance: string;
         preferredIndustry: string;
-    }
+    },
+    password?: string
 ) => {
     try {
         await connectToDatabase();
@@ -98,6 +99,23 @@ export const verifySignUpOTP = async (
             });
         } catch (evErr) {
             console.error('Inngest event send failed:', evErr);
+        }
+
+        // If password is provided, sign the user in immediately
+        if (password) {
+            const response = await auth.api.signInEmail({
+                body: {
+                    email,
+                    password,
+                }
+            });
+
+            if (response) {
+                return {
+                    success: true,
+                    message: 'Email verified and signed in successfully!'
+                };
+            }
         }
 
         return {

@@ -2,7 +2,7 @@
 
 import { useState, useRef, KeyboardEvent, ClipboardEvent } from 'react'
 import { verifySignUpOTP, verifySignInOTP, resendOTPCode } from '@/lib/actions/auth.actions'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 
@@ -94,7 +94,7 @@ export default function OTPVerification({
             let result
 
             if (type === 'signup' && userData) {
-                result = await verifySignUpOTP(email, otpCode, userData)
+                result = await verifySignUpOTP(email, otpCode, userData, password)
             } else if (type === 'signin' && password) {
                 result = await verifySignInOTP(email, password, otpCode)
             } else {
@@ -105,12 +105,8 @@ export default function OTPVerification({
 
             if (result.success) {
                 toast.success(result.message)
-                if (type === 'signup') {
-                    router.push('/sign-in?verified=true')
-                } else {
-                    router.push('/')
-                    router.refresh()
-                }
+                router.push('/')
+                router.refresh()
             } else {
                 toast.error(result.message || 'Verification failed')
             }
