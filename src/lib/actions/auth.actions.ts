@@ -103,18 +103,22 @@ export const verifySignUpOTP = async (
 
         // If password is provided, sign the user in immediately
         if (password) {
+            console.log("Attempting sign-in for:", email);
             const response = await auth.api.signInEmail({
                 body: {
                     email,
                     password,
                 }
             });
+            console.log("Sign-in response:", response);
 
             if (response) {
                 return {
                     success: true,
                     message: 'Email verified and signed in successfully!'
                 };
+            } else {
+                console.log("Sign-in returned falsey response");
             }
         }
 

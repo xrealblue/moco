@@ -104,10 +104,13 @@ export default function OTPVerification({
             }
 
             if (result.success) {
+                console.log('Verification successful', result);
                 toast.success(result.message)
+                console.log('Redirecting to /');
                 router.push('/')
                 router.refresh()
             } else {
+                console.log('Verification failed', result);
                 toast.error(result.message || 'Verification failed')
             }
         } catch (err) {

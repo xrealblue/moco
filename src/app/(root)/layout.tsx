@@ -3,13 +3,15 @@ import { auth } from "@/lib/better-auth/auth"
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 
-const Layout = async ({children}: {children : React.ReactNode}) => {
+const Layout = async ({ children }: { children: React.ReactNode }) => {
+  console.log("Layout: Fetching session...");
   const session = await auth.api.getSession({
     headers: await headers()
   });
-  
+  console.log("Layout: Session result:", session ? "Session found" : "No session");
 
   if (!session?.user) {
+    console.log("Layout: No user in session, redirecting to /sign-in");
     redirect('/sign-in');
   }
 
@@ -21,11 +23,11 @@ const Layout = async ({children}: {children : React.ReactNode}) => {
 
   return (
     <main className="min-h-screen w-full ">
-        <Header user={user} />
+      <Header user={user} />
 
-        <div className="w-full py-10">
-            {children}
-        </div>
+      <div className="w-full py-10">
+        {children}
+      </div>
     </main>
   )
 }

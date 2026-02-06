@@ -25,7 +25,7 @@ export const getAuth = async () => {
 
         baseURL: process.env.BETTER_AUTH_URL,
         cookies: {
-            secure: false,     
+            secure: false,
             sameSite: "lax",
         },
         emailAndPassword: {
@@ -36,7 +36,7 @@ export const getAuth = async () => {
             maxPasswordLength: 128,
             autoSignIn: true,
         },
-        plugin: [nextCookies()],
+        plugins: [nextCookies()],
     });
 
     return authInstance;
