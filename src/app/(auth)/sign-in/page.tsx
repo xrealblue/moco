@@ -70,7 +70,7 @@ const SignInPage = () => {
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-zinc-950 via-black to-zinc-900 relative overflow-hidden">
+    <div className="min-h-screen ant w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-zinc-950 via-black to-zinc-900 relative overflow-hidden">
       {/* Animated background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-48 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
@@ -88,10 +88,10 @@ const SignInPage = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent play">
                 Welcome Back
               </h1>
-              <p className="text-zinc-400 text-sm sm:text-base">
+              <p className="text-zinc-400 and text-sm sm:text-base">
                 Sign in to your account to continue your journey
               </p>
             </div>
@@ -157,20 +157,9 @@ const SignInPage = () => {
                 )}
               </Button>
 
-              {/* Divider */}
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t border-zinc-800" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-zinc-950 px-3 text-zinc-500 font-medium">
-                    New to our platform?
-                  </span>
-                </div>
-              </div>
 
-              {/* Sign Up Link */}
-              <div className="text-center">
+
+              <div className="text-center play">
                 <p className="text-zinc-400 text-sm sm:text-base">
                   Don't have an account?{' '}
                   <a

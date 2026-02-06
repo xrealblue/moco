@@ -104,8 +104,8 @@ const SignUpPage = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                                 </svg>
                             </div>
-                            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
-                                Create Your Account
+                            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent play">
+                                Create New Account
                             </h1>
                             <p className="text-zinc-400 text-sm sm:text-base max-w-md mx-auto">
                                 Join Moco and start your trading journey with confidence
@@ -243,21 +243,11 @@ const SignUpPage = () => {
                                 )}
                             </Button>
 
-                            {/* Divider */}
-                            <div className="relative">
-                                <div className="absolute inset-0 flex items-center">
-                                    <span className="w-full border-t border-zinc-800" />
-                                </div>
-                                <div className="relative flex justify-center text-xs uppercase">
-                                    <span className="bg-zinc-950 px-3 text-zinc-500 font-medium">
-                                        Already a member?
-                                    </span>
-                                </div>
-                            </div>
+
 
                             {/* Sign In Link */}
                             <div className="text-center">
-                                <p className="text-zinc-400 text-sm sm:text-base">
+                                <p className="text-zinc-400 text-sm sm:text-base play">
                                     Already have an account?{' '}
                                     <a
                                         href="/sign-in"
